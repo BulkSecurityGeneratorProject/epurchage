@@ -22,5 +22,17 @@
 
     <cache alias="com.softage.epurchase.social.SocialUserConnection" uses-template="simple"/>
 
+    <cache alias="com.softage.epurchase.domain.Employee" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Employee.requisitions" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Department" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Item" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Requisition" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Requisition.items" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

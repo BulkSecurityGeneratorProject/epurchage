@@ -1,0 +1,27 @@
+{
+    "epurchaseApp": {
+        "requisition" : {
+            "home": {
+                "title": "Requisitions",
+                "createLabel": "Create a new Requisition",
+                "createOrEditLabel": "Create or edit a Requisition",
+                "search": "Search for Requisition"
+            },
+            "created": "A new Requisition is created with identifier {{ param }}",
+            "updated": "A Requisition is updated with identifier {{ param }}",
+            "deleted": "A Requisition is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Requisition {{ id }}?"
+            },
+            "detail": {
+                "title": "Requisition"
+            },
+            "reqNo": "Req No",
+            "reqDate": "Req Date",
+            "poDate": "Po Date",
+            "ponumber": "Ponumber",
+            "employee": "Employee",
+            "item": "Item"
+        }
+    }
+}

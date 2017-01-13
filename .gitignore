@@ -141,3 +141,8 @@ Desktop.ini
 # Bower
 ######################
 **/bower_components/
+
+######################
+# JHipster
+######################
+.jhipster/

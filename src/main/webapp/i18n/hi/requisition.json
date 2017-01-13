@@ -1,0 +1,27 @@
+{
+    "epurchaseApp": {
+        "requisition" : {
+            "home": {
+                "title": "Requisitions",
+                "createLabel": "नया Requisition बनाएँ",
+                "createOrEditLabel": "Requisition बनाएँ या संपादित करें",
+                "search": "Requisition खोजें"
+            },
+            "created": "एक नया Requisition [identifier: {{ param }}] तैयार है",
+            "updated": "एक Requisition [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Requisition [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Requisition [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Requisition"
+            },
+            "reqNo": "Req No",
+            "reqDate": "Req Date",
+            "poDate": "Po Date",
+            "ponumber": "Ponumber",
+            "employee": "Employee",
+            "item": "Item"
+        }
+    }
+}

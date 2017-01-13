@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="epurchaseApp.requisition.detail.title">Requisition</span> {{vm.requisition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="epurchaseApp.requisition.reqNo">Req No</span></dt>
+        <dd>
+            <span>{{vm.requisition.reqNo}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.reqDate">Req Date</span></dt>
+        <dd>
+            <span>{{vm.requisition.reqDate}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.poDate">Po Date</span></dt>
+        <dd>
+            <span>{{vm.requisition.poDate}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.ponumber">Ponumber</span></dt>
+        <dd>
+            <span>{{vm.requisition.ponumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.employee">Employee</span></dt>
+        <dd>
+            <a ui-sref="employeemySuffix-detail({id:vm.requisition.employeeId})">{{vm.requisition.employeeId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="requisitionmySuffix-detail.edit({id:vm.requisition.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
