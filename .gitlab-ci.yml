@@ -17,6 +17,9 @@ before_script:
     - export MAVEN_USER_HOME=`pwd`/.maven
     - npm install
 
+before_install:
+  - chmod +x mvnw
+
 maven-build:
     stage: build
     script: ./mvnw compile -Dmaven.repo.local=$MAVEN_USER_HOME
