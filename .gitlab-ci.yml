@@ -18,7 +18,7 @@ before_script:
     - npm install
 
 before_install:
-  - chmod +x mvnw
+    - chmod +x mvnw
 
 maven-build:
     stage: build
