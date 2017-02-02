@@ -15,6 +15,7 @@ stages:
 before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - export MAVEN_USER_HOME=`pwd`/.maven
+    - chmod +x mvnw
     - npm install
 
 maven-build:
