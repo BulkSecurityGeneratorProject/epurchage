@@ -17,6 +17,7 @@ before_script:
     - export MAVEN_USER_HOME=`pwd`/.maven
     - chmod +x mvnw
     - npm install
+    - sudo bower install --allow-root
 
 maven-build:
     stage: build
@@ -40,6 +41,7 @@ gatling-test:
         - ./mvnw gatling:execute -Dmaven.repo.local=$MAVEN_USER_HOME
     before_script:
         - npm install
+        - sudo bower install --allow-root
         - ./mvnw &
     artifacts:
         paths:
