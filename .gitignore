@@ -65,7 +65,6 @@ local.properties
 ######################
 log/
 target/
-.mvn/
 
 ######################
 # Gradle

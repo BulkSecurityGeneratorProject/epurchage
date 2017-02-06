@@ -18,7 +18,6 @@ before_script:
     - chmod +x mvnw
     - npm install
     - bower install
-    - mvn -N io.takari:maven:wrapper
 
 maven-build:
     stage: build
@@ -43,7 +42,6 @@ gatling-test:
     before_script:
         - npm install
         - bower install
-        - mvn -N io.takari:maven:wrapper
         - ./mvnw &
     artifacts:
         paths:
