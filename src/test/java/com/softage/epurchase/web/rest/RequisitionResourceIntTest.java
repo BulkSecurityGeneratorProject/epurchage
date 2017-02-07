@@ -40,8 +40,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EpurchaseApp.class)
 public class RequisitionResourceIntTest {
 
-    private static final Long DEFAULT_REQ_NO = 1L;
-    private static final Long UPDATED_REQ_NO = 2L;
+    private static final Long DEFAULT_REQ_NUMBER = 1L;
+    private static final Long UPDATED_REQ_NUMBER = 2L;
+
+    private static final String DEFAULT_PO_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_PO_NUMBER = "BBBBBBBBBB";
 
     private static final Long DEFAULT_REQ_DATE = 1L;
     private static final Long UPDATED_REQ_DATE = 2L;
@@ -49,8 +52,8 @@ public class RequisitionResourceIntTest {
     private static final Long DEFAULT_PO_DATE = 1L;
     private static final Long UPDATED_PO_DATE = 2L;
 
-    private static final String DEFAULT_PONUMBER = "AAAAAAAAAA";
-    private static final String UPDATED_PONUMBER = "BBBBBBBBBB";
+    private static final String DEFAULT_SHIP_ADDRESS = "AAAAAAAAAA";
+    private static final String UPDATED_SHIP_ADDRESS = "BBBBBBBBBB";
 
     @Inject
     private RequisitionRepository requisitionRepository;
@@ -94,10 +97,11 @@ public class RequisitionResourceIntTest {
      */
     public static Requisition createEntity(EntityManager em) {
         Requisition requisition = new Requisition()
-                .reqNo(DEFAULT_REQ_NO)
+                .reqNumber(DEFAULT_REQ_NUMBER)
+                .poNumber(DEFAULT_PO_NUMBER)
                 .reqDate(DEFAULT_REQ_DATE)
                 .poDate(DEFAULT_PO_DATE)
-                .ponumber(DEFAULT_PONUMBER);
+                .shipAddress(DEFAULT_SHIP_ADDRESS);
         return requisition;
     }
 
@@ -124,10 +128,11 @@ public class RequisitionResourceIntTest {
         List<Requisition> requisitionList = requisitionRepository.findAll();
         assertThat(requisitionList).hasSize(databaseSizeBeforeCreate + 1);
         Requisition testRequisition = requisitionList.get(requisitionList.size() - 1);
-        assertThat(testRequisition.getReqNo()).isEqualTo(DEFAULT_REQ_NO);
+        assertThat(testRequisition.getReqNumber()).isEqualTo(DEFAULT_REQ_NUMBER);
+        assertThat(testRequisition.getPoNumber()).isEqualTo(DEFAULT_PO_NUMBER);
         assertThat(testRequisition.getReqDate()).isEqualTo(DEFAULT_REQ_DATE);
         assertThat(testRequisition.getPoDate()).isEqualTo(DEFAULT_PO_DATE);
-        assertThat(testRequisition.getPonumber()).isEqualTo(DEFAULT_PONUMBER);
+        assertThat(testRequisition.getShipAddress()).isEqualTo(DEFAULT_SHIP_ADDRESS);
 
         // Validate the Requisition in ElasticSearch
         Requisition requisitionEs = requisitionSearchRepository.findOne(testRequisition.getId());
@@ -166,10 +171,11 @@ public class RequisitionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(requisition.getId().intValue())))
-            .andExpect(jsonPath("$.[*].reqNo").value(hasItem(DEFAULT_REQ_NO.intValue())))
+            .andExpect(jsonPath("$.[*].reqNumber").value(hasItem(DEFAULT_REQ_NUMBER.intValue())))
+            .andExpect(jsonPath("$.[*].poNumber").value(hasItem(DEFAULT_PO_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].reqDate").value(hasItem(DEFAULT_REQ_DATE.intValue())))
             .andExpect(jsonPath("$.[*].poDate").value(hasItem(DEFAULT_PO_DATE.intValue())))
-            .andExpect(jsonPath("$.[*].ponumber").value(hasItem(DEFAULT_PONUMBER.toString())));
+            .andExpect(jsonPath("$.[*].shipAddress").value(hasItem(DEFAULT_SHIP_ADDRESS.toString())));
     }
 
     @Test
@@ -183,10 +189,11 @@ public class RequisitionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(requisition.getId().intValue()))
-            .andExpect(jsonPath("$.reqNo").value(DEFAULT_REQ_NO.intValue()))
+            .andExpect(jsonPath("$.reqNumber").value(DEFAULT_REQ_NUMBER.intValue()))
+            .andExpect(jsonPath("$.poNumber").value(DEFAULT_PO_NUMBER.toString()))
             .andExpect(jsonPath("$.reqDate").value(DEFAULT_REQ_DATE.intValue()))
             .andExpect(jsonPath("$.poDate").value(DEFAULT_PO_DATE.intValue()))
-            .andExpect(jsonPath("$.ponumber").value(DEFAULT_PONUMBER.toString()));
+            .andExpect(jsonPath("$.shipAddress").value(DEFAULT_SHIP_ADDRESS.toString()));
     }
 
     @Test
@@ -208,10 +215,11 @@ public class RequisitionResourceIntTest {
         // Update the requisition
         Requisition updatedRequisition = requisitionRepository.findOne(requisition.getId());
         updatedRequisition
-                .reqNo(UPDATED_REQ_NO)
+                .reqNumber(UPDATED_REQ_NUMBER)
+                .poNumber(UPDATED_PO_NUMBER)
                 .reqDate(UPDATED_REQ_DATE)
                 .poDate(UPDATED_PO_DATE)
-                .ponumber(UPDATED_PONUMBER);
+                .shipAddress(UPDATED_SHIP_ADDRESS);
         RequisitionDTO requisitionDTO = requisitionMapper.requisitionToRequisitionDTO(updatedRequisition);
 
         restRequisitionMockMvc.perform(put("/api/requisitions")
@@ -223,10 +231,11 @@ public class RequisitionResourceIntTest {
         List<Requisition> requisitionList = requisitionRepository.findAll();
         assertThat(requisitionList).hasSize(databaseSizeBeforeUpdate);
         Requisition testRequisition = requisitionList.get(requisitionList.size() - 1);
-        assertThat(testRequisition.getReqNo()).isEqualTo(UPDATED_REQ_NO);
+        assertThat(testRequisition.getReqNumber()).isEqualTo(UPDATED_REQ_NUMBER);
+        assertThat(testRequisition.getPoNumber()).isEqualTo(UPDATED_PO_NUMBER);
         assertThat(testRequisition.getReqDate()).isEqualTo(UPDATED_REQ_DATE);
         assertThat(testRequisition.getPoDate()).isEqualTo(UPDATED_PO_DATE);
-        assertThat(testRequisition.getPonumber()).isEqualTo(UPDATED_PONUMBER);
+        assertThat(testRequisition.getShipAddress()).isEqualTo(UPDATED_SHIP_ADDRESS);
 
         // Validate the Requisition in ElasticSearch
         Requisition requisitionEs = requisitionSearchRepository.findOne(testRequisition.getId());
@@ -286,9 +295,10 @@ public class RequisitionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(requisition.getId().intValue())))
-            .andExpect(jsonPath("$.[*].reqNo").value(hasItem(DEFAULT_REQ_NO.intValue())))
+            .andExpect(jsonPath("$.[*].reqNumber").value(hasItem(DEFAULT_REQ_NUMBER.intValue())))
+            .andExpect(jsonPath("$.[*].poNumber").value(hasItem(DEFAULT_PO_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].reqDate").value(hasItem(DEFAULT_REQ_DATE.intValue())))
             .andExpect(jsonPath("$.[*].poDate").value(hasItem(DEFAULT_PO_DATE.intValue())))
-            .andExpect(jsonPath("$.[*].ponumber").value(hasItem(DEFAULT_PONUMBER.toString())));
+            .andExpect(jsonPath("$.[*].shipAddress").value(hasItem(DEFAULT_SHIP_ADDRESS.toString())));
     }
 }

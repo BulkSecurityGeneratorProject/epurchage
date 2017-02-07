@@ -16,12 +16,14 @@
             "detail": {
                 "title": "Requisition"
             },
-            "reqNo": "Req No",
+            "reqNumber": "Req Number",
+            "poNumber": "Po Number",
             "reqDate": "Req Date",
             "poDate": "Po Date",
-            "ponumber": "Ponumber",
-            "employee": "Employee",
-            "item": "Item"
+            "shipAddress": "Ship Address",
+            "requisition": "Requisition",
+            "requisition": "Requisition",
+            "department": "Department"
         }
     }
 }

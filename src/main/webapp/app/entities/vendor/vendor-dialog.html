@@ -1,0 +1,150 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myVendorLabel" data-translate="epurchaseApp.vendor.home.createOrEditLabel">Create or edit a Vendor</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.vendor.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.vendor.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.regNo" for="field_regNo">Reg No</label>
+            <input type="text" class="form-control" name="regNo" id="field_regNo"
+                    ng-model="vm.vendor.regNo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.companyName" for="field_companyName">Company Name</label>
+            <input type="text" class="form-control" name="companyName" id="field_companyName"
+                    ng-model="vm.vendor.companyName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.contactPerson" for="field_contactPerson">Contact Person</label>
+            <input type="text" class="form-control" name="contactPerson" id="field_contactPerson"
+                    ng-model="vm.vendor.contactPerson"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                    ng-model="vm.vendor.address"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.productType" for="field_productType">Product Type</label>
+            <input type="text" class="form-control" name="productType" id="field_productType"
+                    ng-model="vm.vendor.productType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.vendor.email"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.panNumber" for="field_panNumber">Pan Number</label>
+            <input type="text" class="form-control" name="panNumber" id="field_panNumber"
+                    ng-model="vm.vendor.panNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.tinNumber" for="field_tinNumber">Tin Number</label>
+            <input type="text" class="form-control" name="tinNumber" id="field_tinNumber"
+                    ng-model="vm.vendor.tinNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.stNumber" for="field_stNumber">St Number</label>
+            <input type="text" class="form-control" name="stNumber" id="field_stNumber"
+                    ng-model="vm.vendor.stNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.exerciseNumber" for="field_exerciseNumber">Exercise Number</label>
+            <input type="text" class="form-control" name="exerciseNumber" id="field_exerciseNumber"
+                    ng-model="vm.vendor.exerciseNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.pfNumber" for="field_pfNumber">Pf Number</label>
+            <input type="text" class="form-control" name="pfNumber" id="field_pfNumber"
+                    ng-model="vm.vendor.pfNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.esicNumber" for="field_esicNumber">Esic Number</label>
+            <input type="text" class="form-control" name="esicNumber" id="field_esicNumber"
+                    ng-model="vm.vendor.esicNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.accountName" for="field_accountName">Account Name</label>
+            <input type="text" class="form-control" name="accountName" id="field_accountName"
+                    ng-model="vm.vendor.accountName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.accountNumber" for="field_accountNumber">Account Number</label>
+            <input type="number" class="form-control" name="accountNumber" id="field_accountNumber"
+                    ng-model="vm.vendor.accountNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.ifscCode" for="field_ifscCode">Ifsc Code</label>
+            <input type="text" class="form-control" name="ifscCode" id="field_ifscCode"
+                    ng-model="vm.vendor.ifscCode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.swiftNumber" for="field_swiftNumber">Swift Number</label>
+            <input type="text" class="form-control" name="swiftNumber" id="field_swiftNumber"
+                    ng-model="vm.vendor.swiftNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.bankBranch" for="field_bankBranch">Bank Branch</label>
+            <input type="text" class="form-control" name="bankBranch" id="field_bankBranch"
+                    ng-model="vm.vendor.bankBranch"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.vendorType" for="field_vendorType">Vendor Type</label>
+            <input type="text" class="form-control" name="vendorType" id="field_vendorType"
+                    ng-model="vm.vendor.vendorType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.vendorstatus" for="field_vendorstatus">Vendorstatus</label>
+            <input type="text" class="form-control" name="vendorstatus" id="field_vendorstatus"
+                    ng-model="vm.vendor.vendorstatus"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.vendor.vendorTimeSpan" for="field_vendorTimeSpan">Vendor Time Span</label>
+            <input type="text" class="form-control" name="vendorTimeSpan" id="field_vendorTimeSpan"
+                    ng-model="vm.vendor.vendorTimeSpan"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="epurchaseApp.vendor.item" for="field_item">Item</label>
+            <select class="form-control" id="field_item" multiple name="item" ng-model="vm.vendor.items" ng-options="item as item.id for item in vm.items track by item.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -34,5 +34,21 @@
 
     <cache alias="com.softage.epurchase.domain.Requisition.items" uses-template="simple"/>
 
+    <cache alias="com.softage.epurchase.domain.Vendor" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Vendor.items" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Item.vendors" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Requisition.requisitions" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.ReqItem" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Department.departmentreqs" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.Department.departmentords" uses-template="simple"/>
+
+    <cache alias="com.softage.epurchase.domain.PurchaseOrder" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>

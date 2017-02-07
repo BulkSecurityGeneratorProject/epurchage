@@ -1,0 +1,42 @@
+{
+    "epurchaseApp": {
+        "vendor" : {
+            "home": {
+                "title": "Vendors",
+                "createLabel": "नया Vendor बनाएँ",
+                "createOrEditLabel": "Vendor बनाएँ या संपादित करें",
+                "search": "Vendor खोजें"
+            },
+            "created": "एक नया Vendor [identifier: {{ param }}] तैयार है",
+            "updated": "एक Vendor [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Vendor [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Vendor [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Vendor"
+            },
+            "regNo": "Reg No",
+            "companyName": "Company Name",
+            "contactPerson": "Contact Person",
+            "address": "Address",
+            "productType": "Product Type",
+            "email": "Email",
+            "panNumber": "Pan Number",
+            "tinNumber": "Tin Number",
+            "stNumber": "St Number",
+            "exerciseNumber": "Exercise Number",
+            "pfNumber": "Pf Number",
+            "esicNumber": "Esic Number",
+            "accountName": "Account Name",
+            "accountNumber": "Account Number",
+            "ifscCode": "Ifsc Code",
+            "swiftNumber": "Swift Number",
+            "bankBranch": "Bank Branch",
+            "vendorType": "Vendor Type",
+            "vendorstatus": "Vendorstatus",
+            "vendorTimeSpan": "Vendor Time Span",
+            "item": "Item"
+        }
+    }
+}

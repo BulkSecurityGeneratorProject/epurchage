@@ -16,9 +16,9 @@
             "detail": {
                 "title": "Item"
             },
-            "itemName": "Item Name",
-            "itemType": "Item Type",
-            "requisition": "Requisition"
+            "name": "Name",
+            "brandType": "Brand Type",
+            "vendor": "Vendor"
         }
     }
 }

@@ -13,16 +13,20 @@ public class RequisitionDTO implements Serializable {
 
     private Long id;
 
-    private Long reqNo;
+    private Long reqNumber;
+
+    private String poNumber;
 
     private Long reqDate;
 
     private Long poDate;
 
-    private String ponumber;
+    private String shipAddress;
 
 
-    private Long employeeId;
+    private Long requisitionId;
+    
+    private Long departmentId;
     
     public Long getId() {
         return id;
@@ -31,12 +35,19 @@ public class RequisitionDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public Long getReqNo() {
-        return reqNo;
+    public Long getReqNumber() {
+        return reqNumber;
     }
 
-    public void setReqNo(Long reqNo) {
-        this.reqNo = reqNo;
+    public void setReqNumber(Long reqNumber) {
+        this.reqNumber = reqNumber;
+    }
+    public String getPoNumber() {
+        return poNumber;
+    }
+
+    public void setPoNumber(String poNumber) {
+        this.poNumber = poNumber;
     }
     public Long getReqDate() {
         return reqDate;
@@ -52,20 +63,28 @@ public class RequisitionDTO implements Serializable {
     public void setPoDate(Long poDate) {
         this.poDate = poDate;
     }
-    public String getPonumber() {
-        return ponumber;
+    public String getShipAddress() {
+        return shipAddress;
     }
 
-    public void setPonumber(String ponumber) {
-        this.ponumber = ponumber;
+    public void setShipAddress(String shipAddress) {
+        this.shipAddress = shipAddress;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Long getRequisitionId() {
+        return requisitionId;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setRequisitionId(Long purchaseOrderId) {
+        this.requisitionId = purchaseOrderId;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
     @Override
@@ -93,10 +112,11 @@ public class RequisitionDTO implements Serializable {
     public String toString() {
         return "RequisitionDTO{" +
             "id=" + id +
-            ", reqNo='" + reqNo + "'" +
+            ", reqNumber='" + reqNumber + "'" +
+            ", poNumber='" + poNumber + "'" +
             ", reqDate='" + reqDate + "'" +
             ", poDate='" + poDate + "'" +
-            ", ponumber='" + ponumber + "'" +
+            ", shipAddress='" + shipAddress + "'" +
             '}';
     }
 }

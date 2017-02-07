@@ -1,11 +1,14 @@
 package com.softage.epurchase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -23,8 +26,21 @@ public class Department implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "department_name")
-    private String departmentName;
+    @Column(name = "depart_id")
+    private Long departId;
+
+    @Column(name = "depart_name")
+    private String departName;
+
+    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Requisition> departmentreqs = new HashSet<>();
+
+    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PurchaseOrder> departmentords = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -34,17 +50,80 @@ public class Department implements Serializable {
         this.id = id;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public Long getDepartId() {
+        return departId;
     }
 
-    public Department departmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public Department departId(Long departId) {
+        this.departId = departId;
         return this;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartId(Long departId) {
+        this.departId = departId;
+    }
+
+    public String getDepartName() {
+        return departName;
+    }
+
+    public Department departName(String departName) {
+        this.departName = departName;
+        return this;
+    }
+
+    public void setDepartName(String departName) {
+        this.departName = departName;
+    }
+
+    public Set<Requisition> getDepartmentreqs() {
+        return departmentreqs;
+    }
+
+    public Department departmentreqs(Set<Requisition> requisitions) {
+        this.departmentreqs = requisitions;
+        return this;
+    }
+
+    public Department addDepartmentreq(Requisition requisition) {
+        departmentreqs.add(requisition);
+        requisition.setDepartment(this);
+        return this;
+    }
+
+    public Department removeDepartmentreq(Requisition requisition) {
+        departmentreqs.remove(requisition);
+        requisition.setDepartment(null);
+        return this;
+    }
+
+    public void setDepartmentreqs(Set<Requisition> requisitions) {
+        this.departmentreqs = requisitions;
+    }
+
+    public Set<PurchaseOrder> getDepartmentords() {
+        return departmentords;
+    }
+
+    public Department departmentords(Set<PurchaseOrder> purchaseOrders) {
+        this.departmentords = purchaseOrders;
+        return this;
+    }
+
+    public Department addDepartmentord(PurchaseOrder purchaseOrder) {
+        departmentords.add(purchaseOrder);
+        purchaseOrder.setDepartment(this);
+        return this;
+    }
+
+    public Department removeDepartmentord(PurchaseOrder purchaseOrder) {
+        departmentords.remove(purchaseOrder);
+        purchaseOrder.setDepartment(null);
+        return this;
+    }
+
+    public void setDepartmentords(Set<PurchaseOrder> purchaseOrders) {
+        this.departmentords = purchaseOrders;
     }
 
     @Override
@@ -71,7 +150,8 @@ public class Department implements Serializable {
     public String toString() {
         return "Department{" +
             "id=" + id +
-            ", departmentName='" + departmentName + "'" +
+            ", departId='" + departId + "'" +
+            ", departName='" + departName + "'" +
             '}';
     }
 }

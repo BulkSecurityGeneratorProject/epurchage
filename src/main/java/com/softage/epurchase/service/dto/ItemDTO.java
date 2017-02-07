@@ -13,13 +13,11 @@ public class ItemDTO implements Serializable {
 
     private Long id;
 
-    private String itemName;
+    private String name;
 
-    private String itemType;
+    private String brandType;
 
 
-    private Long requisitionId;
-    
     public Long getId() {
         return id;
     }
@@ -27,27 +25,19 @@ public class ItemDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
+    public String getBrandType() {
+        return brandType;
     }
 
-    public Long getRequisitionId() {
-        return requisitionId;
-    }
-
-    public void setRequisitionId(Long requisitionId) {
-        this.requisitionId = requisitionId;
+    public void setBrandType(String brandType) {
+        this.brandType = brandType;
     }
 
     @Override
@@ -75,8 +65,8 @@ public class ItemDTO implements Serializable {
     public String toString() {
         return "ItemDTO{" +
             "id=" + id +
-            ", itemName='" + itemName + "'" +
-            ", itemType='" + itemType + "'" +
+            ", name='" + name + "'" +
+            ", brandType='" + brandType + "'" +
             '}';
     }
 }

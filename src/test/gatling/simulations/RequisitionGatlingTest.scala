@@ -68,7 +68,7 @@ class RequisitionGatlingTest extends Simulation {
             .exec(http("Create new requisition")
             .post("/api/requisitions")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "reqNo":null, "reqDate":null, "poDate":null, "ponumber":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "reqNumber":null, "poNumber":"SAMPLE_TEXT", "reqDate":null, "poDate":null, "shipAddress":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_requisition_url"))).exitHereIfFailed
             .pause(10)

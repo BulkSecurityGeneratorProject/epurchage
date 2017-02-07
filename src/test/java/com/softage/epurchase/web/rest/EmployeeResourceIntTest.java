@@ -40,9 +40,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EpurchaseApp.class)
 public class EmployeeResourceIntTest {
 
-    private static final String DEFAULT_EMPLOYEE_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_EMPLOYEE_NAME = "BBBBBBBBBB";
-
     @Inject
     private EmployeeRepository employeeRepository;
 
@@ -84,8 +81,7 @@ public class EmployeeResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static Employee createEntity(EntityManager em) {
-        Employee employee = new Employee()
-                .employeeName(DEFAULT_EMPLOYEE_NAME);
+        Employee employee = new Employee();
         return employee;
     }
 
@@ -112,7 +108,6 @@ public class EmployeeResourceIntTest {
         List<Employee> employeeList = employeeRepository.findAll();
         assertThat(employeeList).hasSize(databaseSizeBeforeCreate + 1);
         Employee testEmployee = employeeList.get(employeeList.size() - 1);
-        assertThat(testEmployee.getEmployeeName()).isEqualTo(DEFAULT_EMPLOYEE_NAME);
 
         // Validate the Employee in ElasticSearch
         Employee employeeEs = employeeSearchRepository.findOne(testEmployee.getId());
@@ -150,8 +145,7 @@ public class EmployeeResourceIntTest {
         restEmployeeMockMvc.perform(get("/api/employees?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())))
-            .andExpect(jsonPath("$.[*].employeeName").value(hasItem(DEFAULT_EMPLOYEE_NAME.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())));
     }
 
     @Test
@@ -164,8 +158,7 @@ public class EmployeeResourceIntTest {
         restEmployeeMockMvc.perform(get("/api/employees/{id}", employee.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(employee.getId().intValue()))
-            .andExpect(jsonPath("$.employeeName").value(DEFAULT_EMPLOYEE_NAME.toString()));
+            .andExpect(jsonPath("$.id").value(employee.getId().intValue()));
     }
 
     @Test
@@ -186,8 +179,6 @@ public class EmployeeResourceIntTest {
 
         // Update the employee
         Employee updatedEmployee = employeeRepository.findOne(employee.getId());
-        updatedEmployee
-                .employeeName(UPDATED_EMPLOYEE_NAME);
         EmployeeDTO employeeDTO = employeeMapper.employeeToEmployeeDTO(updatedEmployee);
 
         restEmployeeMockMvc.perform(put("/api/employees")
@@ -199,7 +190,6 @@ public class EmployeeResourceIntTest {
         List<Employee> employeeList = employeeRepository.findAll();
         assertThat(employeeList).hasSize(databaseSizeBeforeUpdate);
         Employee testEmployee = employeeList.get(employeeList.size() - 1);
-        assertThat(testEmployee.getEmployeeName()).isEqualTo(UPDATED_EMPLOYEE_NAME);
 
         // Validate the Employee in ElasticSearch
         Employee employeeEs = employeeSearchRepository.findOne(testEmployee.getId());
@@ -258,7 +248,6 @@ public class EmployeeResourceIntTest {
         restEmployeeMockMvc.perform(get("/api/_search/employees?query=id:" + employee.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())))
-            .andExpect(jsonPath("$.[*].employeeName").value(hasItem(DEFAULT_EMPLOYEE_NAME.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())));
     }
 }

@@ -12,23 +12,34 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {})
 public interface RequisitionMapper {
 
-    @Mapping(source = "employee.id", target = "employeeId")
+    @Mapping(source = "requisition.id", target = "requisitionId")
+    @Mapping(source = "department.id", target = "departmentId")
     RequisitionDTO requisitionToRequisitionDTO(Requisition requisition);
 
     List<RequisitionDTO> requisitionsToRequisitionDTOs(List<Requisition> requisitions);
 
-    @Mapping(source = "employeeId", target = "employee")
-    @Mapping(target = "items", ignore = true)
+    @Mapping(source = "requisitionId", target = "requisition")
+    @Mapping(target = "requisitions", ignore = true)
+    @Mapping(source = "departmentId", target = "department")
     Requisition requisitionDTOToRequisition(RequisitionDTO requisitionDTO);
 
     List<Requisition> requisitionDTOsToRequisitions(List<RequisitionDTO> requisitionDTOs);
 
-    default Employee employeeFromId(Long id) {
+    default PurchaseOrder purchaseOrderFromId(Long id) {
         if (id == null) {
             return null;
         }
-        Employee employee = new Employee();
-        employee.setId(id);
-        return employee;
+        PurchaseOrder purchaseOrder = new PurchaseOrder();
+        purchaseOrder.setId(id);
+        return purchaseOrder;
+    }
+
+    default Department departmentFromId(Long id) {
+        if (id == null) {
+            return null;
+        }
+        Department department = new Department();
+        department.setId(id);
+        return department;
     }
 }

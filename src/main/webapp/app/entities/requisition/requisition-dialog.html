@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRequisitionLabel" data-translate="epurchaseApp.requisition.home.createOrEditLabel">Create or edit a Requisition</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.requisition.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.requisition.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.requisition.reqNumber" for="field_reqNumber">Req Number</label>
+            <input type="number" class="form-control" name="reqNumber" id="field_reqNumber"
+                    ng-model="vm.requisition.reqNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.requisition.poNumber" for="field_poNumber">Po Number</label>
+            <input type="text" class="form-control" name="poNumber" id="field_poNumber"
+                    ng-model="vm.requisition.poNumber"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.requisition.reqDate" for="field_reqDate">Req Date</label>
+            <input type="number" class="form-control" name="reqDate" id="field_reqDate"
+                    ng-model="vm.requisition.reqDate"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.requisition.poDate" for="field_poDate">Po Date</label>
+            <input type="number" class="form-control" name="poDate" id="field_poDate"
+                    ng-model="vm.requisition.poDate"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="epurchaseApp.requisition.shipAddress" for="field_shipAddress">Ship Address</label>
+            <input type="text" class="form-control" name="shipAddress" id="field_shipAddress"
+                    ng-model="vm.requisition.shipAddress"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="epurchaseApp.requisition.requisition" for="field_requisition">Requisition</label>
+            <select class="form-control" id="field_requisition" name="requisition" ng-model="vm.requisition.requisitionId" ng-options="purchaseOrder.id as purchaseOrder.id for purchaseOrder in vm.requisitions | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="epurchaseApp.requisition.department" for="field_department">Department</label>
+            <select class="form-control" id="field_department" name="department" ng-model="vm.requisition.departmentId" ng-options="department.id as department.id for department in vm.departments"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

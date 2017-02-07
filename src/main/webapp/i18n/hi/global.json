@@ -11,6 +11,13 @@
                 "departmentmySuffix": "Department",
                 "itemmySuffix": "Item",
                 "requisitionmySuffix": "Requisition",
+                "employee": "Employee",
+                "vendor": "Vendor",
+                "item": "Item",
+                "requisition": "Requisition",
+                "reqItem": "Req Item",
+                "department": "Department",
+                "purchaseOrder": "Purchase Order",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

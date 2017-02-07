@@ -12,23 +12,11 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {})
 public interface EmployeeMapper {
 
-    @Mapping(source = "department.id", target = "departmentId")
     EmployeeDTO employeeToEmployeeDTO(Employee employee);
 
     List<EmployeeDTO> employeesToEmployeeDTOs(List<Employee> employees);
 
-    @Mapping(source = "departmentId", target = "department")
-    @Mapping(target = "requisitions", ignore = true)
     Employee employeeDTOToEmployee(EmployeeDTO employeeDTO);
 
     List<Employee> employeeDTOsToEmployees(List<EmployeeDTO> employeeDTOs);
-
-    default Department departmentFromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        Department department = new Department();
-        department.setId(id);
-        return department;
-    }
 }

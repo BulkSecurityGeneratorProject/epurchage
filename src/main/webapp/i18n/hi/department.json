@@ -16,7 +16,10 @@
             "detail": {
                 "title": "Department"
             },
-            "departmentName": "Department Name"
+            "departId": "Depart Id",
+            "departName": "Depart Name",
+            "departmentreq": "Departmentreq",
+            "departmentord": "Departmentord"
         }
     }
 }

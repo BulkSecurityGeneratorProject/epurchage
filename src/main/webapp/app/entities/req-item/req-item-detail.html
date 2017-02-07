@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span data-translate="epurchaseApp.reqItem.detail.title">Req Item</span> {{vm.reqItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="epurchaseApp.reqItem.itemId">Item Id</span></dt>
+        <dd>
+            <span>{{vm.reqItem.itemId}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.itemName">Item Name</span></dt>
+        <dd>
+            <span>{{vm.reqItem.itemName}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.purpose">Purpose</span></dt>
+        <dd>
+            <span>{{vm.reqItem.purpose}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.specificationItem">Specification Item</span></dt>
+        <dd>
+            <span>{{vm.reqItem.specificationItem}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.location">Location</span></dt>
+        <dd>
+            <span>{{vm.reqItem.location}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.officeCode">Office Code</span></dt>
+        <dd>
+            <span>{{vm.reqItem.officeCode}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.qty">Qty</span></dt>
+        <dd>
+            <span>{{vm.reqItem.qty}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.unit">Unit</span></dt>
+        <dd>
+            <span>{{vm.reqItem.unit}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.reqItem.requisition">Requisition</span></dt>
+        <dd>
+            <a ui-sref="requisition-detail({id:vm.reqItem.requisitionId})">{{vm.reqItem.requisitionId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="req-item-detail.edit({id:vm.reqItem.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

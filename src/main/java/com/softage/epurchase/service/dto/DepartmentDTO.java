@@ -1,6 +1,8 @@
 package com.softage.epurchase.service.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 
@@ -11,7 +13,9 @@ public class DepartmentDTO implements Serializable {
 
     private Long id;
 
-    private String departmentName;
+    private Long departId;
+
+    private String departName;
 
 
     public Long getId() {
@@ -21,12 +25,19 @@ public class DepartmentDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getDepartmentName() {
-        return departmentName;
+    public Long getDepartId() {
+        return departId;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartId(Long departId) {
+        this.departId = departId;
+    }
+    public String getDepartName() {
+        return departName;
+    }
+
+    public void setDepartName(String departName) {
+        this.departName = departName;
     }
 
     @Override
@@ -54,7 +65,8 @@ public class DepartmentDTO implements Serializable {
     public String toString() {
         return "DepartmentDTO{" +
             "id=" + id +
-            ", departmentName='" + departmentName + "'" +
+            ", departId='" + departId + "'" +
+            ", departName='" + departName + "'" +
             '}';
     }
 }

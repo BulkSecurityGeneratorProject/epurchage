@@ -1,0 +1,30 @@
+{
+    "epurchaseApp": {
+        "reqItem" : {
+            "home": {
+                "title": "ReqItems",
+                "createLabel": "नया Req Item बनाएँ",
+                "createOrEditLabel": "Req Item बनाएँ या संपादित करें",
+                "search": "Req Item खोजें"
+            },
+            "created": "एक नया Req Item [identifier: {{ param }}] तैयार है",
+            "updated": "एक Req Item [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Req Item [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Req Item [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Req Item"
+            },
+            "itemId": "Item Id",
+            "itemName": "Item Name",
+            "purpose": "Purpose",
+            "specificationItem": "Specification Item",
+            "location": "Location",
+            "officeCode": "Office Code",
+            "qty": "Qty",
+            "unit": "Unit",
+            "requisition": "Requisition"
+        }
+    }
+}

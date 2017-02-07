@@ -16,6 +16,8 @@ public interface DepartmentMapper {
 
     List<DepartmentDTO> departmentsToDepartmentDTOs(List<Department> departments);
 
+    @Mapping(target = "departmentreqs", ignore = true)
+    @Mapping(target = "departmentords", ignore = true)
     Department departmentDTOToDepartment(DepartmentDTO departmentDTO);
 
     List<Department> departmentDTOsToDepartments(List<DepartmentDTO> departmentDTOs);

@@ -40,11 +40,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EpurchaseApp.class)
 public class ItemResourceIntTest {
 
-    private static final String DEFAULT_ITEM_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_ITEM_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_ITEM_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_ITEM_TYPE = "BBBBBBBBBB";
+    private static final String DEFAULT_BRAND_TYPE = "AAAAAAAAAA";
+    private static final String UPDATED_BRAND_TYPE = "BBBBBBBBBB";
 
     @Inject
     private ItemRepository itemRepository;
@@ -88,8 +88,8 @@ public class ItemResourceIntTest {
      */
     public static Item createEntity(EntityManager em) {
         Item item = new Item()
-                .itemName(DEFAULT_ITEM_NAME)
-                .itemType(DEFAULT_ITEM_TYPE);
+                .name(DEFAULT_NAME)
+                .brandType(DEFAULT_BRAND_TYPE);
         return item;
     }
 
@@ -116,8 +116,8 @@ public class ItemResourceIntTest {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).hasSize(databaseSizeBeforeCreate + 1);
         Item testItem = itemList.get(itemList.size() - 1);
-        assertThat(testItem.getItemName()).isEqualTo(DEFAULT_ITEM_NAME);
-        assertThat(testItem.getItemType()).isEqualTo(DEFAULT_ITEM_TYPE);
+        assertThat(testItem.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testItem.getBrandType()).isEqualTo(DEFAULT_BRAND_TYPE);
 
         // Validate the Item in ElasticSearch
         Item itemEs = itemSearchRepository.findOne(testItem.getId());
@@ -156,8 +156,8 @@ public class ItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(item.getId().intValue())))
-            .andExpect(jsonPath("$.[*].itemName").value(hasItem(DEFAULT_ITEM_NAME.toString())))
-            .andExpect(jsonPath("$.[*].itemType").value(hasItem(DEFAULT_ITEM_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].brandType").value(hasItem(DEFAULT_BRAND_TYPE.toString())));
     }
 
     @Test
@@ -171,8 +171,8 @@ public class ItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(item.getId().intValue()))
-            .andExpect(jsonPath("$.itemName").value(DEFAULT_ITEM_NAME.toString()))
-            .andExpect(jsonPath("$.itemType").value(DEFAULT_ITEM_TYPE.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.brandType").value(DEFAULT_BRAND_TYPE.toString()));
     }
 
     @Test
@@ -194,8 +194,8 @@ public class ItemResourceIntTest {
         // Update the item
         Item updatedItem = itemRepository.findOne(item.getId());
         updatedItem
-                .itemName(UPDATED_ITEM_NAME)
-                .itemType(UPDATED_ITEM_TYPE);
+                .name(UPDATED_NAME)
+                .brandType(UPDATED_BRAND_TYPE);
         ItemDTO itemDTO = itemMapper.itemToItemDTO(updatedItem);
 
         restItemMockMvc.perform(put("/api/items")
@@ -207,8 +207,8 @@ public class ItemResourceIntTest {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).hasSize(databaseSizeBeforeUpdate);
         Item testItem = itemList.get(itemList.size() - 1);
-        assertThat(testItem.getItemName()).isEqualTo(UPDATED_ITEM_NAME);
-        assertThat(testItem.getItemType()).isEqualTo(UPDATED_ITEM_TYPE);
+        assertThat(testItem.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testItem.getBrandType()).isEqualTo(UPDATED_BRAND_TYPE);
 
         // Validate the Item in ElasticSearch
         Item itemEs = itemSearchRepository.findOne(testItem.getId());
@@ -268,7 +268,7 @@ public class ItemResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(item.getId().intValue())))
-            .andExpect(jsonPath("$.[*].itemName").value(hasItem(DEFAULT_ITEM_NAME.toString())))
-            .andExpect(jsonPath("$.[*].itemType").value(hasItem(DEFAULT_ITEM_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].brandType").value(hasItem(DEFAULT_BRAND_TYPE.toString())));
     }
 }

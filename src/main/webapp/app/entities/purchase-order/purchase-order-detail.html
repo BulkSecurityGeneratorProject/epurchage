@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span data-translate="epurchaseApp.purchaseOrder.detail.title">Purchase Order</span> {{vm.purchaseOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="epurchaseApp.purchaseOrder.poNumber">Po Number</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.poNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.poDate">Po Date</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.poDate}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.devAddress">Dev Address</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.devAddress}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.billAddress">Bill Address</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.billAddress}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.vendorAddress">Vendor Address</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.vendorAddress}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.particulars">Particulars</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.particulars}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.quantity}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.unitPrice">Unit Price</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.unitPrice}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.totalPrice">Total Price</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.totalPrice}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.esicDeduction">Esic Deduction</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.esicDeduction}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.grandTotal">Grand Total</span></dt>
+        <dd>
+            <span>{{vm.purchaseOrder.grandTotal}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.purchaseOrder.department">Department</span></dt>
+        <dd>
+            <a ui-sref="department-detail({id:vm.purchaseOrder.departmentId})">{{vm.purchaseOrder.departmentId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="purchase-order-detail.edit({id:vm.purchaseOrder.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

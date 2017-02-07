@@ -40,8 +40,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EpurchaseApp.class)
 public class DepartmentResourceIntTest {
 
-    private static final String DEFAULT_DEPARTMENT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_DEPARTMENT_NAME = "BBBBBBBBBB";
+    private static final Long DEFAULT_DEPART_ID = 1L;
+    private static final Long UPDATED_DEPART_ID = 2L;
+
+    private static final String DEFAULT_DEPART_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_DEPART_NAME = "BBBBBBBBBB";
 
     @Inject
     private DepartmentRepository departmentRepository;
@@ -85,7 +88,8 @@ public class DepartmentResourceIntTest {
      */
     public static Department createEntity(EntityManager em) {
         Department department = new Department()
-                .departmentName(DEFAULT_DEPARTMENT_NAME);
+                .departId(DEFAULT_DEPART_ID)
+                .departName(DEFAULT_DEPART_NAME);
         return department;
     }
 
@@ -112,7 +116,8 @@ public class DepartmentResourceIntTest {
         List<Department> departmentList = departmentRepository.findAll();
         assertThat(departmentList).hasSize(databaseSizeBeforeCreate + 1);
         Department testDepartment = departmentList.get(departmentList.size() - 1);
-        assertThat(testDepartment.getDepartmentName()).isEqualTo(DEFAULT_DEPARTMENT_NAME);
+        assertThat(testDepartment.getDepartId()).isEqualTo(DEFAULT_DEPART_ID);
+        assertThat(testDepartment.getDepartName()).isEqualTo(DEFAULT_DEPART_NAME);
 
         // Validate the Department in ElasticSearch
         Department departmentEs = departmentSearchRepository.findOne(testDepartment.getId());
@@ -151,7 +156,8 @@ public class DepartmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(department.getId().intValue())))
-            .andExpect(jsonPath("$.[*].departmentName").value(hasItem(DEFAULT_DEPARTMENT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].departId").value(hasItem(DEFAULT_DEPART_ID.intValue())))
+            .andExpect(jsonPath("$.[*].departName").value(hasItem(DEFAULT_DEPART_NAME.toString())));
     }
 
     @Test
@@ -165,7 +171,8 @@ public class DepartmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(department.getId().intValue()))
-            .andExpect(jsonPath("$.departmentName").value(DEFAULT_DEPARTMENT_NAME.toString()));
+            .andExpect(jsonPath("$.departId").value(DEFAULT_DEPART_ID.intValue()))
+            .andExpect(jsonPath("$.departName").value(DEFAULT_DEPART_NAME.toString()));
     }
 
     @Test
@@ -187,7 +194,8 @@ public class DepartmentResourceIntTest {
         // Update the department
         Department updatedDepartment = departmentRepository.findOne(department.getId());
         updatedDepartment
-                .departmentName(UPDATED_DEPARTMENT_NAME);
+                .departId(UPDATED_DEPART_ID)
+                .departName(UPDATED_DEPART_NAME);
         DepartmentDTO departmentDTO = departmentMapper.departmentToDepartmentDTO(updatedDepartment);
 
         restDepartmentMockMvc.perform(put("/api/departments")
@@ -199,7 +207,8 @@ public class DepartmentResourceIntTest {
         List<Department> departmentList = departmentRepository.findAll();
         assertThat(departmentList).hasSize(databaseSizeBeforeUpdate);
         Department testDepartment = departmentList.get(departmentList.size() - 1);
-        assertThat(testDepartment.getDepartmentName()).isEqualTo(UPDATED_DEPARTMENT_NAME);
+        assertThat(testDepartment.getDepartId()).isEqualTo(UPDATED_DEPART_ID);
+        assertThat(testDepartment.getDepartName()).isEqualTo(UPDATED_DEPART_NAME);
 
         // Validate the Department in ElasticSearch
         Department departmentEs = departmentSearchRepository.findOne(testDepartment.getId());
@@ -259,6 +268,7 @@ public class DepartmentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(department.getId().intValue())))
-            .andExpect(jsonPath("$.[*].departmentName").value(hasItem(DEFAULT_DEPARTMENT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].departId").value(hasItem(DEFAULT_DEPART_ID.intValue())))
+            .andExpect(jsonPath("$.[*].departName").value(hasItem(DEFAULT_DEPART_NAME.toString())));
     }
 }

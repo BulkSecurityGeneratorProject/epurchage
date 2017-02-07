@@ -26,8 +26,11 @@ public class Requisition implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "req_no")
-    private Long reqNo;
+    @Column(name = "req_number")
+    private Long reqNumber;
+
+    @Column(name = "po_number")
+    private String poNumber;
 
     @Column(name = "req_date")
     private Long reqDate;
@@ -35,16 +38,20 @@ public class Requisition implements Serializable {
     @Column(name = "po_date")
     private Long poDate;
 
-    @Column(name = "ponumber")
-    private String ponumber;
+    @Column(name = "ship_address")
+    private String shipAddress;
 
-    @ManyToOne
-    private Employee employee;
+    @OneToOne
+    @JoinColumn(unique = true)
+    private PurchaseOrder requisition;
 
     @OneToMany(mappedBy = "requisition")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Item> items = new HashSet<>();
+    private Set<ReqItem> requisitions = new HashSet<>();
+
+    @ManyToOne
+    private Department department;
 
     public Long getId() {
         return id;
@@ -54,17 +61,30 @@ public class Requisition implements Serializable {
         this.id = id;
     }
 
-    public Long getReqNo() {
-        return reqNo;
+    public Long getReqNumber() {
+        return reqNumber;
     }
 
-    public Requisition reqNo(Long reqNo) {
-        this.reqNo = reqNo;
+    public Requisition reqNumber(Long reqNumber) {
+        this.reqNumber = reqNumber;
         return this;
     }
 
-    public void setReqNo(Long reqNo) {
-        this.reqNo = reqNo;
+    public void setReqNumber(Long reqNumber) {
+        this.reqNumber = reqNumber;
+    }
+
+    public String getPoNumber() {
+        return poNumber;
+    }
+
+    public Requisition poNumber(String poNumber) {
+        this.poNumber = poNumber;
+        return this;
+    }
+
+    public void setPoNumber(String poNumber) {
+        this.poNumber = poNumber;
     }
 
     public Long getReqDate() {
@@ -93,55 +113,68 @@ public class Requisition implements Serializable {
         this.poDate = poDate;
     }
 
-    public String getPonumber() {
-        return ponumber;
+    public String getShipAddress() {
+        return shipAddress;
     }
 
-    public Requisition ponumber(String ponumber) {
-        this.ponumber = ponumber;
+    public Requisition shipAddress(String shipAddress) {
+        this.shipAddress = shipAddress;
         return this;
     }
 
-    public void setPonumber(String ponumber) {
-        this.ponumber = ponumber;
+    public void setShipAddress(String shipAddress) {
+        this.shipAddress = shipAddress;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public PurchaseOrder getRequisition() {
+        return requisition;
     }
 
-    public Requisition employee(Employee employee) {
-        this.employee = employee;
+    public Requisition requisition(PurchaseOrder purchaseOrder) {
+        this.requisition = purchaseOrder;
         return this;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setRequisition(PurchaseOrder purchaseOrder) {
+        this.requisition = purchaseOrder;
     }
 
-    public Set<Item> getItems() {
-        return items;
+    public Set<ReqItem> getRequisitions() {
+        return requisitions;
     }
 
-    public Requisition items(Set<Item> items) {
-        this.items = items;
+    public Requisition requisitions(Set<ReqItem> reqItems) {
+        this.requisitions = reqItems;
         return this;
     }
 
-    public Requisition addItem(Item item) {
-        items.add(item);
-        item.setRequisition(this);
+    public Requisition addRequisition(ReqItem reqItem) {
+        requisitions.add(reqItem);
+        reqItem.setRequisition(this);
         return this;
     }
 
-    public Requisition removeItem(Item item) {
-        items.remove(item);
-        item.setRequisition(null);
+    public Requisition removeRequisition(ReqItem reqItem) {
+        requisitions.remove(reqItem);
+        reqItem.setRequisition(null);
         return this;
     }
 
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setRequisitions(Set<ReqItem> reqItems) {
+        this.requisitions = reqItems;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public Requisition department(Department department) {
+        this.department = department;
+        return this;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -168,10 +201,11 @@ public class Requisition implements Serializable {
     public String toString() {
         return "Requisition{" +
             "id=" + id +
-            ", reqNo='" + reqNo + "'" +
+            ", reqNumber='" + reqNumber + "'" +
+            ", poNumber='" + poNumber + "'" +
             ", reqDate='" + reqDate + "'" +
             ", poDate='" + poDate + "'" +
-            ", ponumber='" + ponumber + "'" +
+            ", shipAddress='" + shipAddress + "'" +
             '}';
     }
 }

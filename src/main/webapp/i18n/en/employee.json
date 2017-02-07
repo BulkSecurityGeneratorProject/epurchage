@@ -15,10 +15,7 @@
             },
             "detail": {
                 "title": "Employee"
-            },
-            "employeeName": "Employee Name",
-            "department": "Department",
-            "requisition": "Requisition"
+            }
         }
     }
 }

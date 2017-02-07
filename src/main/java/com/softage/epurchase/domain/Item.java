@@ -1,11 +1,14 @@
 package com.softage.epurchase.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -23,14 +26,16 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "item_name")
-    private String itemName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "item_type")
-    private String itemType;
+    @Column(name = "brand_type")
+    private String brandType;
 
-    @ManyToOne
-    private Requisition requisition;
+    @ManyToMany(mappedBy = "items")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Vendor> vendors = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -40,43 +45,55 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getName() {
+        return name;
     }
 
-    public Item itemName(String itemName) {
-        this.itemName = itemName;
+    public Item name(String name) {
+        this.name = name;
         return this;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getItemType() {
-        return itemType;
+    public String getBrandType() {
+        return brandType;
     }
 
-    public Item itemType(String itemType) {
-        this.itemType = itemType;
+    public Item brandType(String brandType) {
+        this.brandType = brandType;
         return this;
     }
 
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
+    public void setBrandType(String brandType) {
+        this.brandType = brandType;
     }
 
-    public Requisition getRequisition() {
-        return requisition;
+    public Set<Vendor> getVendors() {
+        return vendors;
     }
 
-    public Item requisition(Requisition requisition) {
-        this.requisition = requisition;
+    public Item vendors(Set<Vendor> vendors) {
+        this.vendors = vendors;
         return this;
     }
 
-    public void setRequisition(Requisition requisition) {
-        this.requisition = requisition;
+    public Item addVendor(Vendor vendor) {
+        vendors.add(vendor);
+        vendor.getItems().add(this);
+        return this;
+    }
+
+    public Item removeVendor(Vendor vendor) {
+        vendors.remove(vendor);
+        vendor.getItems().remove(this);
+        return this;
+    }
+
+    public void setVendors(Set<Vendor> vendors) {
+        this.vendors = vendors;
     }
 
     @Override
@@ -103,8 +120,8 @@ public class Item implements Serializable {
     public String toString() {
         return "Item{" +
             "id=" + id +
-            ", itemName='" + itemName + "'" +
-            ", itemType='" + itemType + "'" +
+            ", name='" + name + "'" +
+            ", brandType='" + brandType + "'" +
             '}';
     }
 }

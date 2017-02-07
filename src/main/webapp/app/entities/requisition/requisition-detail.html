@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="epurchaseApp.requisition.detail.title">Requisition</span> {{vm.requisition.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="epurchaseApp.requisition.reqNumber">Req Number</span></dt>
+        <dd>
+            <span>{{vm.requisition.reqNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.poNumber">Po Number</span></dt>
+        <dd>
+            <span>{{vm.requisition.poNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.reqDate">Req Date</span></dt>
+        <dd>
+            <span>{{vm.requisition.reqDate}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.poDate">Po Date</span></dt>
+        <dd>
+            <span>{{vm.requisition.poDate}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.shipAddress">Ship Address</span></dt>
+        <dd>
+            <span>{{vm.requisition.shipAddress}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.requisition">Requisition</span></dt>
+        <dd>
+            <a ui-sref="purchase-order-detail({id:vm.requisition.requisitionId})">{{vm.requisition.requisitionId}}</a>
+        </dd>
+        <dt><span data-translate="epurchaseApp.requisition.department">Department</span></dt>
+        <dd>
+            <a ui-sref="department-detail({id:vm.requisition.departmentId})">{{vm.requisition.departmentId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="requisition-detail.edit({id:vm.requisition.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,105 @@
+
+<div>
+    <h2><span data-translate="epurchaseApp.vendor.detail.title">Vendor</span> {{vm.vendor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="epurchaseApp.vendor.regNo">Reg No</span></dt>
+        <dd>
+            <span>{{vm.vendor.regNo}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.companyName">Company Name</span></dt>
+        <dd>
+            <span>{{vm.vendor.companyName}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.contactPerson">Contact Person</span></dt>
+        <dd>
+            <span>{{vm.vendor.contactPerson}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.address">Address</span></dt>
+        <dd>
+            <span>{{vm.vendor.address}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.productType">Product Type</span></dt>
+        <dd>
+            <span>{{vm.vendor.productType}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.email">Email</span></dt>
+        <dd>
+            <span>{{vm.vendor.email}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.panNumber">Pan Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.panNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.tinNumber">Tin Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.tinNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.stNumber">St Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.stNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.exerciseNumber">Exercise Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.exerciseNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.pfNumber">Pf Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.pfNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.esicNumber">Esic Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.esicNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.accountName">Account Name</span></dt>
+        <dd>
+            <span>{{vm.vendor.accountName}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.accountNumber">Account Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.accountNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.ifscCode">Ifsc Code</span></dt>
+        <dd>
+            <span>{{vm.vendor.ifscCode}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.swiftNumber">Swift Number</span></dt>
+        <dd>
+            <span>{{vm.vendor.swiftNumber}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.bankBranch">Bank Branch</span></dt>
+        <dd>
+            <span>{{vm.vendor.bankBranch}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.vendorType">Vendor Type</span></dt>
+        <dd>
+            <span>{{vm.vendor.vendorType}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.vendorstatus">Vendorstatus</span></dt>
+        <dd>
+            <span>{{vm.vendor.vendorstatus}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.vendorTimeSpan">Vendor Time Span</span></dt>
+        <dd>
+            <span>{{vm.vendor.vendorTimeSpan}}</span>
+        </dd>
+        <dt><span data-translate="epurchaseApp.vendor.item">Item</span></dt>
+        <dd>
+            <span ng-repeat="item in vm.vendor.items">
+                <a ui-sref="item-detail({id: item.id})">{{item.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="vendor-detail.edit({id:vm.vendor.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

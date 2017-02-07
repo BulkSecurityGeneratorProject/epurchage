@@ -1,0 +1,89 @@
+<div>
+    <h2 data-translate="epurchaseApp.requisition.home.title">Requisitions</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="requisition.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  data-translate="epurchaseApp.requisition.home.createLabel">
+                        Create new Requisition
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'epurchaseApp.requisition.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.reqNumber">Req Number</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.poNumber">Po Number</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.reqDate">Req Date</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.poDate">Po Date</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.shipAddress">Ship Address</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.requisition">Requisition</span></th>
+                    <th><span data-translate="epurchaseApp.requisition.department">Department</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="requisition in vm.requisitions track by requisition.id">
+                    <td><a ui-sref="requisition-detail({id:requisition.id})">{{requisition.id}}</a></td>
+                    <td>{{requisition.reqNumber}}</td>
+                    <td>{{requisition.poNumber}}</td>
+                    <td>{{requisition.reqDate}}</td>
+                    <td>{{requisition.poDate}}</td>
+                    <td>{{requisition.shipAddress}}</td>
+                    <td>
+                        <a ui-sref="purchase-order-detail({id:requisition.requisitionId})">{{requisition.requisitionId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="department-detail({id:requisition.departmentId})">{{requisition.departmentId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="requisition-detail({id:requisition.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="requisition.edit({id:requisition.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="requisition.delete({id:requisition.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

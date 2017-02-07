@@ -1,0 +1,117 @@
+<div>
+    <h2 data-translate="epurchaseApp.vendor.home.title">Vendors</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="vendor.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  data-translate="epurchaseApp.vendor.home.createLabel">
+                        Create new Vendor
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'epurchaseApp.vendor.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.regNo">Reg No</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.companyName">Company Name</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.contactPerson">Contact Person</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.address">Address</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.productType">Product Type</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.email">Email</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.panNumber">Pan Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.tinNumber">Tin Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.stNumber">St Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.exerciseNumber">Exercise Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.pfNumber">Pf Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.esicNumber">Esic Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.accountName">Account Name</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.accountNumber">Account Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.ifscCode">Ifsc Code</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.swiftNumber">Swift Number</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.bankBranch">Bank Branch</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.vendorType">Vendor Type</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.vendorstatus">Vendorstatus</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.vendorTimeSpan">Vendor Time Span</span></th>
+                    <th><span data-translate="epurchaseApp.vendor.item">Item</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="vendor in vm.vendors track by vendor.id">
+                    <td><a ui-sref="vendor-detail({id:vendor.id})">{{vendor.id}}</a></td>
+                    <td>{{vendor.regNo}}</td>
+                    <td>{{vendor.companyName}}</td>
+                    <td>{{vendor.contactPerson}}</td>
+                    <td>{{vendor.address}}</td>
+                    <td>{{vendor.productType}}</td>
+                    <td>{{vendor.email}}</td>
+                    <td>{{vendor.panNumber}}</td>
+                    <td>{{vendor.tinNumber}}</td>
+                    <td>{{vendor.stNumber}}</td>
+                    <td>{{vendor.exerciseNumber}}</td>
+                    <td>{{vendor.pfNumber}}</td>
+                    <td>{{vendor.esicNumber}}</td>
+                    <td>{{vendor.accountName}}</td>
+                    <td>{{vendor.accountNumber}}</td>
+                    <td>{{vendor.ifscCode}}</td>
+                    <td>{{vendor.swiftNumber}}</td>
+                    <td>{{vendor.bankBranch}}</td>
+                    <td>{{vendor.vendorType}}</td>
+                    <td>{{vendor.vendorstatus}}</td>
+                    <td>{{vendor.vendorTimeSpan}}</td>
+                    <td>
+                        <span ng-repeat="item in vendor.items">
+                            <a class="form-control-static" ui-sref="item-detail({id: item.id})">{{item.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="vendor-detail({id:vendor.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="vendor.edit({id:vendor.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="vendor.delete({id:vendor.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{
+    "epurchaseApp": {
+        "reqItem" : {
+            "home": {
+                "title": "Req Items",
+                "createLabel": "Create a new Req Item",
+                "createOrEditLabel": "Create or edit a Req Item",
+                "search": "Search for Req Item"
+            },
+            "created": "A new Req Item is created with identifier {{ param }}",
+            "updated": "A Req Item is updated with identifier {{ param }}",
+            "deleted": "A Req Item is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Req Item {{ id }}?"
+            },
+            "detail": {
+                "title": "Req Item"
+            },
+            "itemId": "Item Id",
+            "itemName": "Item Name",
+            "purpose": "Purpose",
+            "specificationItem": "Specification Item",
+            "location": "Location",
+            "officeCode": "Office Code",
+            "qty": "Qty",
+            "unit": "Unit",
+            "requisition": "Requisition"
+        }
+    }
+}
