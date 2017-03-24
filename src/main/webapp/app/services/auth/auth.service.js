@@ -51,6 +51,10 @@
                     $state.go('home');
                 }
 
+                if(!isAuthenticated && $rootScope.toState.name === 'home'){
+                    LoginService.open();
+                }
+
                 // recover and clear previousState after external login redirect (e.g. oauth2)
                 if (isAuthenticated && !$rootScope.fromState.name && getPreviousState()) {
                     var previousState = getPreviousState();

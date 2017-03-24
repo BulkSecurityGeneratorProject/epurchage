@@ -24,16 +24,17 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/epurchase;DB_CLOSE_DELAY=-1
+        url: jdbc:mysql://localhost:3306/epurchase?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
-        username: epurchase
-        password:
+        username: root
+        password: redhat
     h2:
         console:
             enabled: false
+
     jpa:
-        database-platform: com.softage.epurchase.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
         show-sql: true
         properties:
             hibernate.cache.use_second_level_cache: true

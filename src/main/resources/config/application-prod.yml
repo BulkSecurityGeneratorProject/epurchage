@@ -22,7 +22,7 @@ spring:
         url: jdbc:mysql://localhost:3306/epurchase?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
-        password:
+        password: redhat
         hikari:
             data-source-properties:
                 cachePrepStmts: true
